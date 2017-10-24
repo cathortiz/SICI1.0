@@ -85,7 +85,7 @@ public class buscarResponsable extends javax.swing.JDialog {
             if(rdbDNI.isSelected()){
                 int idd = Integer.parseInt(txtBuscar.getText());
                 Responsable res = new Responsable();
-                listaResponsables = sesion.createQuery("from Responsable where dni like '" + idd + "%'").list();
+                listaResponsables = sesion.createQuery("from Responsable where dni like '%" + idd + "%'").list();
                 for  (Responsable x : listaResponsables){
                     Responsable Responsable = x;
                     Object fila[] = new Object[7];
@@ -427,7 +427,7 @@ public class buscarResponsable extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtbTabla;
+    public javax.swing.JTable jtbTabla;
     private javax.swing.JRadioButton rdbCodigo;
     private javax.swing.JRadioButton rdbDNI;
     private javax.swing.JRadioButton rdbNombre;

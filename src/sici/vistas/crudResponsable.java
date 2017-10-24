@@ -666,6 +666,8 @@ public class crudResponsable extends javax.swing.JDialog {
         // TODO add your handling code here:
         buscarResponsable buscar = new buscarResponsable(null, true);
         buscar.setVisible(true);
+        
+        DefaultTableModel model = (DefaultTableModel) buscar.jtbTabla.getModel();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtDNIKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyPressed
@@ -761,7 +763,7 @@ public class crudResponsable extends javax.swing.JDialog {
     private javax.swing.JLabel lblMantenimientoUsuario;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTelefono;
-    private javax.swing.JTable tblResponsable;
+    public javax.swing.JTable tblResponsable;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;
