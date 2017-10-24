@@ -56,15 +56,13 @@ public class buscarResponsable extends javax.swing.JDialog {
             List<Responsable>listaResponsables = null;
 
             sesion.beginTransaction();
-            listaResponsables = sesion.createQuery("from Responsable").list();
             if(rdbCodigo.isSelected()){
-                
                 Responsable res = new Responsable();
+                int id = Integer.parseInt(txtBuscar.getText());
+                listaResponsables = sesion.createQuery("from Responsable where idResponsable = " + id).list();
                 for  (Responsable x : listaResponsables){
                     Responsable Responsable = x;
-                    Object fila[] = new Object[50];
-                    int id = Integer.parseInt(txtBuscar.getText());
-                    if((int)id == (int)Responsable.getIdResponsable()){
+                    Object fila[] = new Object[7];
                         fila[0] = Responsable.getIdResponsable();
                 
                         int estado = Responsable.getEstado();
@@ -80,7 +78,6 @@ public class buscarResponsable extends javax.swing.JDialog {
                             fila[6] = Responsable.getTelefono();
                             modelo.addRow(fila);
                     }
-                }
                 sesion.getTransaction().commit();
                 sesion.close();
             }
@@ -88,10 +85,10 @@ public class buscarResponsable extends javax.swing.JDialog {
             if(rdbDNI.isSelected()){
                 int idd = Integer.parseInt(txtBuscar.getText());
                 Responsable res = new Responsable();
+                listaResponsables = sesion.createQuery("from Responsable where dni like '" + idd + "%'").list();
                 for  (Responsable x : listaResponsables){
                     Responsable Responsable = x;
-                    Object fila[] = new Object[50];
-                    if((int)idd == Integer.parseInt(Responsable.getDni())){
+                    Object fila[] = new Object[7];
                         fila[0] = Responsable.getIdResponsable();
                 
                         int estado = Responsable.getEstado();
@@ -107,6 +104,30 @@ public class buscarResponsable extends javax.swing.JDialog {
                             fila[6] = Responsable.getTelefono();
                             modelo.addRow(fila);
                     }
+                sesion.getTransaction().commit();
+                sesion.close();
+            }
+            if(rdbNombre.isSelected()){
+                String name = txtBuscar.getText();
+                Responsable res = new Responsable();
+                listaResponsables = sesion.createQuery("from Responsable where nombre like '" + name + "%'").list();
+                for  (Responsable x : listaResponsables){
+                    Responsable Responsable = x;
+                    Object fila[] = new Object[7];
+                        fila[0] = Responsable.getIdResponsable();
+                
+                        int estado = Responsable.getEstado();
+                        if ( estado == 0){
+                            fila[1] = "Inactivo";
+                        }else{
+                            fila[1] = "Activo";
+                        }
+                            fila[2] = Responsable.getNombre();
+                            fila[3] = Responsable.getDireccion();
+                            fila[4] = Responsable.getDni();
+                            fila[5] = Responsable.getEmail();
+                            fila[6] = Responsable.getTelefono();
+                            modelo.addRow(fila);
                 }
                 sesion.getTransaction().commit();
                 sesion.close();
